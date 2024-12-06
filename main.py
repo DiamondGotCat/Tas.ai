@@ -5,6 +5,8 @@ import os
 
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 messages = []
+task_min_count = 10
+task_max_count = 20
 
 def spacer():
     print("")
@@ -28,12 +30,15 @@ def getResponse(messages, client, model) -> str:
 
 def generateTasks(messages):
     global client
-    prompt = """
+    prompt = f"""
     Your Tasks:
     1. Please think the Next Tasks of assistant Only.
     2. Please output Tasks Only.
     3. Do not Output in Code Block, Please Output in Plain Text.
     4. Do not Output Answer Task (example: "3. Answer").
+
+    MIN: {task_min_count} Tasks Required
+    MAX: Maximum {task_max_count} Tasks
 
     Task Format:
     ```
