@@ -5,8 +5,8 @@ import os
 
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 messages = []
-task_min_count = 10
-task_max_count = 20
+task_min_count = 5
+task_max_count = 10
 
 def spacer():
     print("")
@@ -24,7 +24,7 @@ def getResponse(messages, client, model) -> str:
     response = client.chat.completions.create(
         model=model,
         messages=messages,
-        temperature=0
+        temperature=0.7
     )
     return response.choices[0].message.content
 
