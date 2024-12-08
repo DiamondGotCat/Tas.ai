@@ -1,6 +1,5 @@
 script_version = "1.0.0"
 from openai import OpenAI
-from shlex import join
 import os
 
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
